@@ -1,0 +1,473 @@
+body{
+    background-color: #151C24;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+*{
+    font-family: 'Inter', sans-serif;
+    color: white;
+    padding: 0px auto;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #1C2431;
+}
+.navContainer{
+    display: flex;
+    align-items: center;
+}
+.header{
+    min-width: 1440px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.login{
+    display: flex;
+}
+.login p{
+    padding-left: 5px;
+}
+.login span{
+    padding-left: 5px;
+}
+nav ul li{
+    list-style: none;
+    display: inline-block;
+}
+nav ul li a{
+    text-decoration: none;
+    padding-left: 10px;
+    font-size: 20px;
+}
+nav ul li a:hover{
+    color: #EC6407;
+    text-decoration: underline;
+}
+.container{
+    background-color: #1C2431;
+    max-width: 1440px;
+    margin-top: 2%;
+}
+footer{
+    margin-top: 3%;
+    width: 100%;
+    height: 80px;
+    background-color: #1C2431;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footerContent{
+    width: 75%;
+    display: flex;
+    align-items: center;
+}
+.footerContent img{
+    width: 30px;
+}
+.footerContent span{
+    padding-left: 3%;
+}
+.feedback{
+    position: fixed;
+    top: 40%;
+    right: 0%;
+    display: flex;
+    align-items: center;
+}
+.feedbackClick{
+    right: 0%;
+}
+.feedbackH{
+    width: 40px;
+    height: 150px;
+    padding: 10px;
+    background-color: #EC6407;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px 0px 0px 10px;
+}
+.feedbackH span{
+    writing-mode: vertical-rl;
+}
+.feedbackContainer{
+    width: 200px;
+    height: 200px;
+    background-color: #1C2431;
+    border-radius: 5px;
+    display: none;
+}
+.close{
+    width: 1em;
+    height: 1em;
+    background-color: rgba(305, 305, 305, 0.61);
+    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+}
+.close:hover{
+    background-color: #EC6407;
+}
+.feedbackContainerH{
+    display: flex;
+    width: 100%;
+    height: 30px;
+    justify-content: space-around;
+    align-items: center;
+}
+.inputs{
+    margin-top: 10px;
+    width: 100%;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.inputFeedback{
+    background-color: #151C24;
+    border: none;
+    outline: none;
+    width: 170px;
+    font-size: 12px;
+}
+#btnFeedback{
+    width: 170px;
+    height: 30px;
+    background-color: #EC6407;
+    border: none;
+    font-weight: 600;
+}
+
+
+
+
+.compilationCosplay p{
+    padding: 2%;
+    font-size: 23px;
+    font-weight: 900;
+}
+.compilationCosplayH{
+    display: flex;
+    align-items: center;
+    margin-top: 3%;
+    padding-left: 2%;
+}
+.compilationCosplayH p{
+    font-size: 23px;
+    font-weight: 900;
+}
+#popularChange{
+     padding-left: 1%;
+    font-size: 18px;
+}
+.popularImg{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2%;
+    padding: 2%;
+}
+.popularImg1, .popularImg2, .popularImg3, .popularImg4{
+    height: 300px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-decoration: none;
+    border-radius: 7px;
+}
+.popularImg1{
+    width: 60%;
+    background-image: url(img/cosplay1.jpg);
+}
+
+.popularImg2{
+    width: 35%;
+    background-image: url(img/cosplay2.jpg);
+}
+.popularImg3{
+    width: 50%;
+    margin-top: 2%;
+    background-image: url(img/cosplay3.jpg);
+}
+.popularImg4{
+    width: 45%;
+    margin-top: 2%;
+    background-image: url(img/cosplay4.jpg);
+}
+.popularImgSpan{
+    position: relative;
+    top: 80%;
+    left: 2%;
+    font-weight: bold;
+}
+.memH{
+    display: flex;
+    align-items: center;
+    margin-top: 1%;
+    padding-left: 2%;
+}
+.memH p{
+    margin-top: 2%;
+    font-size: 23px;
+    font-weight: 900;
+}
+.memes{
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.mem{
+    width: 360px;
+    height: 360px;
+    margin-top: 1%;
+}
+.mem1{
+
+    background-image: url(img/mem1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.mem2{
+    background-image: url(img/mem2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.mem3{
+    background-image: url(img/mem3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.mem4{
+    background-image: url(img/mem4.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.mem5{
+    background-image: url(img/mem5.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.mem6{
+    background-image: url(img/mem6.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.mem7{
+    background-image: url(img/mem7.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.mem8{
+    background-image: url(img/mem8.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.mem9{
+    background-image: url(img/mem9.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.memes img{
+    width: 30px;
+    padding: 1%;
+    background-color: #151c247e;
+    margin-left: 2%;
+    margin-top: 2%;
+    border-radius: 5px;
+}
+.testsH{
+    padding: 2%;
+    font-size: 23px;
+    font-weight: 900;
+}
+
+.tests{
+    width: 100%;
+    padding: 2%;
+}
+.tests a{
+    text-decoration: none;
+}
+.test1{
+    width: 100%;
+    height: 250px;
+    background-color: #151C24;
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+}
+.test2{
+    width: 100%;
+    height: 250px;
+    background-color: #151C24;
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+}
+.test3{
+    width: 100%;
+    height: 250px;
+    background-color: #151C24;
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+}
+.testImg,.testImg2, .testImg3 {
+    width: 40%;
+    height: 250px;
+    background-color: #EC6407;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.testImg{
+    background-image: url(img/scale_1200.webp);
+}
+.testImg2{
+    background-image: url(img/dota.jpeg);
+}
+.testImg3{
+    background-image: url(img/genshin.jpg);
+}
+.testH{
+    width: 70%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) { 
+    .container{
+        max-width: 1024px;
+    }
+    .header{
+        min-width: 1024px;
+    }
+    .mem{
+        width: 300px;
+        height: 300px;
+        margin-top: 1%;
+    }
+
+ }
+@media (max-width: 1024px) and (min-width: 640px) {
+    .container{
+        max-width: 640px;
+    }
+    .header{
+        min-width: 640px;
+    }
+    .feedback{
+        display: none;
+    }
+    nav{
+        display: none;
+    }
+    .login{
+        display: none;
+    }
+    .mem{
+        width: 200px;
+        height: 200px;
+        margin-top: 1%;
+    }
+  
+
+}
+@media (max-width: 640px) and (min-width: 480px) {
+    .container{
+        max-width: 480px;
+    }
+    .header{
+        min-width: 480px;
+    }
+    .feedback{
+        display: none;
+    }
+    nav{
+        display: none;
+    }
+    .login{
+        display: none;
+    }
+    .mem{
+        width: 200px;
+        height: 200px;
+        margin-top: 1%;
+    }
+    .mem9{
+        display: none;
+    }
+    .test{
+        flex-direction: column;
+        height: auto;
+    }
+    .testImg{
+        width: 100%;
+    }
+    .testH{
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+  
+
+}
+
+@media (max-width: 480px) and (min-width: 290px) {
+    .container{
+        max-width: 290px;
+    }
+    .header{
+        min-width: 290px;
+    }
+    .feedback{
+        display: none;
+    }
+    nav{
+        display: none;
+    }
+    .login{
+        display: none;
+    }
+    .memes{
+        justify-content: center;
+    }
+    .mem{
+        width: 200px;
+        height: 200px;
+        margin-top: 1%;
+    }
+    .mem9{
+        display: none;
+    }
+    .test{
+        flex-direction: column;
+        height: auto;
+    }
+    .testImg{
+        width: 100%;
+    }
+    .testH{
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+    .testH p{
+        font-size: 15px;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+  
+
+}

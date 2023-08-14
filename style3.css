@@ -1,0 +1,379 @@
+body{
+    background-color: #151C24;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+*{
+    font-family: 'Inter', sans-serif;
+    color: white;
+    padding: 0px auto;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #1C2431;
+}
+.navContainer{
+    display: flex;
+    align-items: center;
+}
+.header{
+    min-width: 1440px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.login{
+    display: flex;
+}
+.login p{
+    padding-left: 5px;
+}
+.login span{
+    padding-left: 5px;
+}
+nav ul li{
+    list-style: none;
+    display: inline-block;
+}
+nav ul li a{
+    text-decoration: none;
+    padding-left: 10px;
+    font-size: 20px;
+}
+nav ul li a:hover{
+    color: #EC6407;
+    text-decoration: underline;
+}
+.container{
+    background-color: #1C2431;
+    max-width: 1440px;
+    margin-top: 2%;
+}
+footer{
+    margin-top: 3%;
+    width: 100%;
+    height: 80px;
+    background-color: #1C2431;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footerContent{
+    width: 75%;
+    display: flex;
+    align-items: center;
+}
+.footerContent img{
+    width: 30px;
+}
+.footerContent span{
+    padding-left: 3%;
+}
+.feedback{
+    position: fixed;
+    top: 40%;
+    right: 0%;
+    display: flex;
+    align-items: center;
+}
+.feedbackClick{
+    right: 0%;
+}
+.feedbackH{
+    width: 40px;
+    height: 150px;
+    padding: 10px;
+    background-color: #EC6407;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px 0px 0px 10px;
+}
+.feedbackH span{
+    writing-mode: vertical-rl;
+}
+.feedbackContainer{
+    width: 200px;
+    height: 200px;
+    background-color: #1C2431;
+    border-radius: 5px;
+    display: none;
+}
+.close{
+    width: 1em;
+    height: 1em;
+    background-color: rgba(255, 255, 255, 0.61);
+    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+}
+.close:hover{
+    background-color: #EC6407;
+}
+.feedbackContainerH{
+    display: flex;
+    width: 100%;
+    height: 30px;
+    justify-content: space-around;
+    align-items: center;
+}
+.inputs{
+    margin-top: 10px;
+    width: 100%;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.inputFeedback{
+    background-color: #151C24;
+    border: none;
+    outline: none;
+    width: 170px;
+    font-size: 12px;
+}
+#btnFeedback{
+    width: 170px;
+    height: 25px;
+    background-color: #EC6407;
+    border: none;
+    font-weight: 600;
+}
+
+
+
+
+
+.navigation{
+    width: 100%;
+    display: flex;
+    padding: 2%;
+    justify-content: flex-start;
+}
+.navigation p a{
+    text-decoration: none;
+}
+.imgArticle{
+    width: 100%;
+    height: 500px;
+    background-image: url(img/st3.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+}
+.wrapper{
+    width: 100%;
+    height: 500px;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    border-radius: 6px;
+    padding: 2%;
+}
+.articleH{
+    position: relative;
+    z-index: 50;
+    top: -50%;
+    padding: 2%;
+}
+.autor{
+    position: relative;
+    top: -90%;
+}
+#autorName{
+    position: relative;
+    z-index: 50;
+    top: -50%;
+    padding: 2%; 
+}
+
+.articleH{
+    font-size: 30px;
+    font-weight: 600;
+}
+.articleContent{
+    margin-top: 2%;
+    padding: 2%;
+}
+.imgAndP{
+    display: flex;
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+.imgAndP p{
+    padding-left: 2%;
+}
+.imgAndP img{
+    width: 40%;
+}
+.discussion{
+    width: 60%;
+    padding: 2%;
+}
+.discussion p{
+    font-size: 18px;
+    font-weight: 600;
+}
+#comment{
+    width: 60% ;
+    height: 40px;
+    margin-top: 2%;
+    background-color: #151C24;
+    border: none;
+    outline: none;
+}
+#sendComment{
+    width: 20% ;
+    height: 40px;
+    margin-top: 2%;
+    background-color: #151C24;
+    border: none;
+    outline: none;
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) { 
+    .container{
+        max-width: 1024px;
+    }
+
+    .header{
+        min-width: 1024px;
+    }
+    .cosplayCompilation p{
+        font-size: 13px;
+    }
+    .moreCompilation{
+        font-size: 18px;
+    }
+    .popularImgSpan{
+        top: 70%;
+        font-size: 14px;
+    }
+ }
+
+@media (max-width: 1024px) and (min-width: 640px) {
+    .articleH p{
+        position: relative;
+        z-index: 50;
+        top: 30%;
+        padding: 2%;
+    }
+    .container{
+        max-width: 640px;
+    }
+    .header{
+        min-width: 640px;
+    }
+    .feedback{
+        display: none;
+    }
+    nav{
+        display: none;
+    }
+    .login{
+        display: none;
+    }
+    .imgAndP{
+        display: flex;
+        flex-direction: column;
+    }
+    .imgAndP img{
+       width: 100%;
+       margin-bottom: 2%;
+    }
+    .discussion{
+        width: 100%;
+    }
+    .navigation {
+        font-size: 12px;
+    }
+
+  
+}
+
+@media (max-width: 640px) and (min-width: 480px) {
+    .container{
+        max-width: 480px;
+    }
+    .header{
+        min-width: 480px;
+    }
+    .feedback{
+        display: none;
+    }
+    nav{
+        display: none;
+    }
+    .login{
+        display: none;
+    }
+    .imgAndP{
+        display: flex;
+        flex-direction: column;
+    }
+    .imgAndP img{
+       width: 100%;
+       margin-bottom: 2%;
+    }
+    .discussion{
+        width: 100%;
+    }
+    .navigation {
+        display: none;
+    }
+    .articleH{
+        top: -40%;
+    }
+  
+}
+@media (max-width: 480px) and (min-width: 290px) {
+    .container{
+        max-width: 290px;
+    }
+    .header{
+        min-width: 290px;
+    }
+    .feedback{
+        display: none;
+    }
+    nav{
+        display: none;
+    }
+    .login{
+        display: none;
+    }
+    .imgAndP{
+        display: flex;
+        flex-direction: column;
+    }
+    .imgAndP img{
+       width: 100%;
+       margin-bottom: 2%;
+    }
+    .discussion{
+        width: 100%;
+    }
+    .navigation {
+        font-size: 12px;
+    }
+    .articleH{
+        top: -30%;
+        font-size: 17PX;
+    }
+    .navigation {
+        display: none;
+    }
+    #sendComment{
+        font-size: 10PX;
+        width: 30%;
+    }
+    .footerContent span{
+        font-size: 10px;
+    }
+  
+}
