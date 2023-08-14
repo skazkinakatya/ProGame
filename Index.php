@@ -38,30 +38,6 @@
             </div>
         </div>
     </header>
-    <div class="formsLogReg">
-        <div class="pLogReg">
-            <p class="enterP">ВХОД</p>
-            <p>РЕГИСТРАЦИЯ</p>
-            <div class="closeForm"></div>
-        </div>
-    <div class="formReg">
-        <form action="" id="formRegister">
-            <input type="text" name="loginNameReg" id="loginNameReg" placeholder="ЛОГИН">
-            <input type="text" name="nameReg" id="nameReg"  placeholder="ИМЯ">
-            <input type="email" name="emailReg" id="emailReg"  placeholder="E-MAIL">
-            <input type="number" name="numberReg" id="numberReg"  placeholder="НОМЕР ТЕЛЕФОНА">
-            <input type="password" name="passwordReg" id="passwordReg" placeholder="ПАРОЛЬ">
-            <input type="button" value="ЗАРЕГЕСТРИРОВАТЬСЯ" name="register" id="register">
-        </form>
-    </div>
-    <div class="">
-        <form action="" id="formEnter">
-            <input type="number" name="numberEnter" id="loginEnter" placeholder="НОМЕР ТЕЛЕФОНА">
-            <input type="password" name="passwordEnter" id="passwordEnter"  placeholder="ПАРОЛЬ">
-            <input type="button" value="ВОЙТИ" name="Enter" id="Enter">
-        </form>
-    </div>
-</div>
 
 
     <div class="container">

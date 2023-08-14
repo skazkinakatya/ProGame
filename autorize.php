@@ -1,3 +1,42 @@
+<?php
+    error_reporting(E_ALL);
+    ini_set("display_error", "on");
+    
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $host='localhost';
+    $user='root';
+    $pass='';
+    $name='proGameDB';
+
+    $link=mysqli_connect($host, $user, $pass, $name);
+
+    $isPosted=$_SERVER['REQUEST_METHOD'] === 'POST';  //Проверка метода, которым мы пришли на страницу
+    
+    $loginError="";
+
+    function normalize($text){
+        $text = trim($text);
+        $text = stripslashes($text);
+        $text = htmlspecialchars($text);
+
+        return $text;
+    }
+    
+    if($isPosted){ // Проводтит проверку формы
+        $loginEnter=mysqli_real_escape_string($link, normalize($_POST['loginEnter']));
+        $passwordEnter=md5(normalize($_POST['passwordEnter']));
+    
+        $userData=mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM users WHERE (login = '".$loginEnter."'    OR tel = '".$loginEnter."'    OR email = '".$loginEnter."')    AND password = '".$passwordEnter."'"));
+        if(!$userData){
+            $loginError="Неверное имя пользователя или пароль";
+        }
+        else{
+            header("Location: /index.php");
+            die();
+        }
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -56,10 +95,16 @@
 
     <div class="">
         <form action="" id="formEnter" method="POST">
-            <input type="number" name="numberEnter" id="loginEnter" placeholder="НОМЕР ТЕЛЕФОНА">
+            <input type="text" name="loginEnter" id="loginEnter" placeholder="Введите логин, номер телефона или email">
             <input type="password" name="passwordEnter" id="passwordEnter"  placeholder="ПАРОЛЬ">
             <input type="submit" value="ВОЙТИ" name="Enter" id="Enter">
         </form>
+        <?php if($loginError!=""){ ?>
+            <p> <?php echo $loginError ?>
+            </p>
+            <?php
+        }
+        ?>
     </div>
 </div>
 

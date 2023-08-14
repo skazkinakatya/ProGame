@@ -18,7 +18,7 @@
         return $text;
     }
 
-    function validate($loginName, $name, $email, $number, $password){ // Проверка полей формы на валидность
+    function validate($link, $loginName, $name, $email, $number, $password){ // Проверка полей формы на валидность
         $validationErrors=[];
 
         $loginNameLen=strlen($loginName);
@@ -29,19 +29,42 @@
         if(!preg_match("~^[a-zA-Zа-яА-Я0-9-_]+[\s]{0,1}[a-zA-Zа-яА-Я0-9-_]*$~",$loginName)){
             array_push($validationErrors,"Логин должен содержать только латинские буквы и цифры");
         }
+
+        $checkLogin = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM users WHERE login = '".$loginName."' "));
+
+        if($checkLogin != null){
+            array_push($validationErrors,"Логин занят, выберите другой");
+        };
+
         if(!preg_match("/[0-9a-z]+@[a-z]/",$email)){
             array_push($validationErrors,"Введите корректную почту");
         }
         if(strlen($email)>32){
             array_push($validationErrors,"Слиишком длинный email, введите до 32х символов");
         }
+
+
+        $checkEmail = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM users WHERE email = '".$email."' "));
+
+        if($checkEmail != null){
+            array_push($validationErrors,"К данной почте уже привязан аккаунт");
+        };
+
         if(!preg_match("/^[0-9]{10,11}+$/", $number)){
             array_push($validationErrors,"Телефон задан в неверном формате");
         }
+
+        $checkNumber = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM users WHERE tel = '".$number."' "));
+
+        if($checkNumber != null){
+            array_push($validationErrors,"К этому номеру телефона уже привязан аккаунт");
+        };
+
+        
         if(!preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}$/",$password)){
             array_push($validationErrors,"Пароль должен состоять из латинских букв и иметь как минимум одну цифру, одну маленькую букву и одну большую букву. Длина должна быть от 8 до 16 символов");
         }
-
+        if($loginName){}
 
         return $validationErrors;
     } 
@@ -56,7 +79,7 @@
         $numberReg=normalize($_POST['numberReg']);
         $passwordReg=normalize($_POST['passwordReg']);
 
-        $validationErrors=validate($loginNameReg, $nameReg, $emailReg, $numberReg, $passwordReg);
+        $validationErrors=validate($link, $loginNameReg, $nameReg, $emailReg, $numberReg, $passwordReg);
         $isValid=count($validationErrors)===0;
     
         
