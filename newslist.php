@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style8.css">
+    <link rel="stylesheet" href="newslist.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -25,10 +25,15 @@
                 </ul>
             </nav>
         </div>
-            <div class="login">
-                <p>Войти</p>
+        <div class="login">
+                <a href="autorize.php"><p>Войти</p></a>
                 <span>/</span>
-                <p>Зарегестрироваться</p>
+                <a href="registration.php"><p>Зарегестрироваться</p></a>
+            </div>
+            <div class="login displayNone" id="divUser">
+                <p id="userName"></p>
+                <span>/</span>
+                <a href="logout.php"><p>Выйти</p></a>
             </div>
         </div>
     </header>
@@ -44,39 +49,39 @@
             <div class="articleContent">
 
                 <div class="articleBlocks">
-                    <a href="" class="articleBlock">
+                    <a href="news2.php" class="articleBlock">
                        
                         <div class="articleText">
-                            <p>Создатели Dark and Darker выпустили игру в раннем доступе</p>
+                            <p>PGL анонсировала новую волну продажи билетов на первый мейджор по Counter-Strike 2</p>
                         <span>2 дня назад</span>
                         </div>
                     </a>
-                    <a href="" class="articleBlock">
+                    <a href="news3.php" class="articleBlock">
                        
                         <div class="articleText">
-                            <p>Новый трейлер сезона «Воскрешение» для Apex Legends посвятили боевому пропуску</p>
+                            <p>Пять героев, которые больше всех выиграли от патча 7.34b — их винрейт уже заметно вырос</p>
 
                         <span>2 дня назад</span>
                         </div>
                     </a>
-                    <a href="" class="articleBlock">
+                    <a href="news4.php" class="articleBlock">
                        
                         <div class="articleText">
-                            <p>Успех запуска Baldurs Gate 3 превзошел все ожидания Larian</p>
+                            <p>В Valorant появятся реалистичные скины в стиле CS:GO</p>
                         <span>2 дня назад</span>
                         </div>
                     </a>
-                    <a href="" class="articleBlock">
+                    <a href="news5.php" class="articleBlock">
                        
                         <div class="articleText">
-                            <p>Создатели Remnant 2 пообещали кроссплей и новые архетипы в DLC</p>
+                            <p>Новый баг в PUBG — игроки погибают сразу после высадки на карту</p>
                         <span>2 дня назад</span>
                         </div>
                     </a>
-                    <a href="" class="articleBlock">
+                    <a href="news6.php" class="articleBlock">
                        
                         <div class="articleText">
-                            <p>Косплеер показала нежную эльфийку из World of Warcraft</p>
+                            <p>В CS:GO мог появиться эксплойт, позволяющий получать IP-адреса игроков</p>
                         <span>2 дня назад</span>
                         </div>
                     </a>
@@ -170,5 +175,6 @@
             </form>
         </div>
     </div>
+    <script src=header.js></script>
 </body>
 </html>

@@ -38,6 +38,9 @@ header{
 .login span{
     padding-left: 5px;
 }
+.displayNone{
+    display: none;
+}
 .formsLogReg{
     padding: 2%;
     width: 350px;

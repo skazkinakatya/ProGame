@@ -14,6 +14,7 @@
     
     $loginError="";
 
+
     function normalize($text){
         $text = trim($text);
         $text = stripslashes($text);
@@ -22,7 +23,7 @@
         return $text;
     }
     
-    if($isPosted){ // Проводтит проверку формы
+    if($isPosted){ // Провотит проверку формы
         $loginEnter=mysqli_real_escape_string($link, normalize($_POST['loginEnter']));
         $passwordEnter=md5(normalize($_POST['passwordEnter']));
     
@@ -31,6 +32,13 @@
             $loginError="Неверное имя пользователя или пароль";
         }
         else{
+            $userInfo=[];
+            $userInfo['id']=$userData['id'];
+            $userInfo['login']=$userData['login'];
+            $userInfoJson=json_encode($userInfo, JSON_UNESCAPED_UNICODE);
+            session_start();
+            $_SESSION['userId']=$userData['id'];
+            setcookie('user', $userInfoJson, time()+60*60*24*14);
             header("Location: /index.php");
             die();
         }
@@ -71,10 +79,11 @@
             </div>
 
             <div class="login">
-                <p>Войти</p>
+                <a href="autorize.php"><p>Войти</p></a>
                 <span>/</span>
-                <p>Зарегестрироваться</p>
+                <a href="registration.php"><p>Зарегестрироваться</p></a>
             </div>
+            
         </div>
     </header>
 
@@ -87,10 +96,8 @@
         <div class="changeForm">
             <div class=pContainer>
             <p class="enterP">ВХОД</p>
-            <p class="regP">РЕГИСТРАЦИЯ</p>
+            <a href="registration.php"><p class="regP">РЕГИСТРАЦИЯ</p></a>
             </div>
-
-            <div class="closeForm"></div>
         </div>
 
     <div class="">

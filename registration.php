@@ -137,9 +137,9 @@
             </div>
 
             <div class="login">
-                <p>Войти</p>
+                <a href="autorize.php"><p>Войти</p></a>
                 <span>/</span>
-                <p>Зарегестрироваться</p>
+                <a href="registration.php"><p>Зарегестрироваться</p></a>
             </div>
         </div>
     </header>
@@ -154,8 +154,6 @@
             <div class=pContainer>
             <p class="regP">РЕГИСТРАЦИЯ</p>
             </div>
-
-            <div class="closeForm"></div>
         </div>
 
 
@@ -212,6 +210,7 @@
 
 
     <script src="script.js"></script>
+    <script src=header.js></script>
 </body>
 
 </html>

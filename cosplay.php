@@ -32,10 +32,16 @@
             </div>
 
             <div class="login">
-                <p>Войти</p>
+                <a href="autorize.php"><p>Войти</p></a>
                 <span>/</span>
-                <p>Зарегестрироваться</p>
+                <a href="registration.php"><p>Зарегестрироваться</p></a>
             </div>
+            <div class="login displayNone" id="divUser">
+                <p id="userName"></p>
+                <span>/</span>
+                <a href="logout.php"><p>Выйти</p></a>
+            </div>
+            
         </div>
     </header>
 
@@ -142,6 +148,7 @@
             <span>Все права защищены ©</span>
         </div>
     </footer>
+    <script src=header.js></script>
 </body>
 
 </html>
