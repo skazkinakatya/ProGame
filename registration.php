@@ -93,7 +93,7 @@
             header("Location: /autorize.php");
             die();
          } 
-        catch(Exeption $e){
+        catch(Exception $e){
             print_r($e);
         }}
     };

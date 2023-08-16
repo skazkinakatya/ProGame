@@ -229,56 +229,11 @@ footer{
     width: 360px;
     height: 360px;
     margin-top: 1%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
-.mem1{
 
-    background-image: url(img/mem1.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.mem2{
-    background-image: url(img/mem2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-
-}
-.mem3{
-    background-image: url(img/mem3.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.mem4{
-    background-image: url(img/mem4.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.mem5{
-    background-image: url(img/mem5.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.mem6{
-    background-image: url(img/mem6.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.mem7{
-    background-image: url(img/mem7.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.mem8{
-    background-image: url(img/mem8.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-
-}
-.mem9{
-    background-image: url(img/mem9.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-
-}
 
 .memes img{
     width: 30px;

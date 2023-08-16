@@ -225,80 +225,7 @@ footer{
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.newsFeed1{
-    width: 30%;
-    height: 360px;
-    background-image: url(img/cosplayfeed1.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.newsFeed2{
-    width: 30%;
-    height: 360px;
-    background-image: url(img/cosplayfeed2.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
-   margin-left: 2%;
-    margin-right: 2%;
-}
-.newsFeed3{
-    width: 30%;
-    height: 360px;
-    background-image: url(img/cosplayfeed3.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.newsFeed4{
-    width: 30%;
-    height: 360px;
-    background-image: url(img/cosplayfeed4.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top: 1%;
-}
-.newsFeed5{
-    width: 30%;
-    height: 360px;
-    background-image: url(img/cosplayfeed5.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top: 1%;
-}
-.newsFeed6{
-    width: 30%;
-    height: 360px;
-    background-image: url(img/cosplayfeed6.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top: 1%;
-}
-.newsFeed7{
-    width: 30%;
-    height: 360px;
-    background-image: url(img/cosplayfeed7.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top: 1%;
-    margin-bottom: 2%;
-}
-.newsFeed8{
-    width: 30%;
-    height: 360px;
-    background-image: url(img/cosplayfeed8.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top: 1%;
-    margin-bottom: 2%;
-}
-.newsFeed9{
-    width: 30%;
-    height: 360px;
-    background-image: url(img/cosplayfeed9.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top: 1%;
-    margin-bottom: 2%;
-}
+
 
 .newsFeeds img{
     width: 30px;
@@ -310,6 +237,12 @@ footer{
 }
 .newsFeed{
     background-position: center;
+    width: 30%;
+    height: 360px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 1%;
+    margin-bottom: 2%;
 }
 
 @media (max-width: 1440px) and (min-width: 1024px) {

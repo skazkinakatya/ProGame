@@ -1,3 +1,32 @@
+<?php
+error_reporting(E_ALL);
+ini_set("display_error", "on");
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+$host='localhost';
+$user='root';
+$pass='';
+$name='proGameDB';
+
+$link=mysqli_connect($host, $user, $pass, $name);
+$cosplayQuery="SELECT * FROM publications  WHERE type=4 ORDER BY  createdOn DESC LIMIT 0,9";
+
+$cosplayData=[];
+$queryResult=mysqli_query($link, $cosplayQuery);
+$resultRow=mysqli_fetch_assoc($queryResult); //создаёт ассоциативный массив из строки запроса в БД
+
+while($resultRow){
+    $dataRow=[];
+    $dataRow['id']=$resultRow['id'];
+    $dataRow['picture']=$resultRow['picture'];
+    array_push($cosplayData, $resultRow);
+    $resultRow=mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
+} // переложили данные из результатов БД в массив
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -86,34 +115,16 @@
     </div>
     <div class="newsFeeds">
 
-        <div class="newsFeed1 newsFeed">
+     <?php
+    foreach ($cosplayData as $row) {    
+    ?>
+
+        <div class="newsFeed" style="background-image: <?php echo "url('img/cosplay/".$row['picture'].".jpg')"?>">
         <img src="img/heart (1).png" alt="">
         </div>
-        <div class="newsFeed2 newsFeed">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="newsFeed3 newsFeed">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="newsFeed4 newsFeed">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="newsFeed5 newsFeed">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="newsFeed6 newsFeed">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="newsFeed7 newsFeed">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="newsFeed8 newsFeed">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="newsFeed9 newsFeed">
-            <img src="img/heart (1).png" alt="">
-        </div>
 
+        <?php } ?>
+        
     </div>
     
 

@@ -1,3 +1,35 @@
+<?php
+error_reporting(E_ALL);
+ini_set("display_error", "on");
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+$host='localhost';
+$user='root';
+$pass='';
+$name='proGameDB';
+
+$link=mysqli_connect($host, $user, $pass, $name);
+$articlesQuery="SELECT * FROM publications  WHERE type=2 ORDER BY createdOn DESC";
+
+$articlesData=[];
+$queryResult=mysqli_query($link, $articlesQuery);
+$resultRow=mysqli_fetch_assoc($queryResult); //создаёт ассоциативный массив из строки запроса в БД
+
+while($resultRow){
+
+    $dataRow=[];
+    $dataRow['id']=$resultRow['id'];
+    $dataRow['title']=$resultRow['title'];
+    $dataRow['picture']=$resultRow['picture'];
+    $dataRow['createdOn']=$resultRow['createdOn'];
+
+    array_push($articlesData, $resultRow);
+
+    $resultRow=mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
+} // переложили данные из результатов БД в массив
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -55,47 +87,23 @@
             <div class="articleContent">
 
                 <div class="articleBlocks">
-                    <a href="" class="articleBlock">
-                        <img src="img/st1.jpg" alt="" style="width: 300px; height: 200px;">
+                <?php
+                    for ($i=0; $i < count($articlesData); $i++) { 
+                        $article=$articlesData[$i];     
+                ?>
+
+                    <a href="<?php echo "/article.php?id=".$article['id']?>" class="articleBlock <?php if($i>=5) echo "displayNone"?>">
+                        <img src="<?php echo "img/articles/".$article['picture'].".jpg"?>" alt="" style="width: 300px; height: 200px;">
                         <div class="articleText">
-                            <p>Мир The Elder Scrolls: пляски каджитов на Лунной Решётке</p>
-                        <p>Всё, что вы хотели узнать, но боялись спросить о самой запутанной игровой вселенной</p>
-                        <span>2 дня назад</span>
+                            <p><?php echo $article['title']?></p>
+                            <span><?php echo $article['createdOn']?></span>
                         </div>
-                    </a>
-                    <a href="" class="articleBlock">
-                        <img src="img/st1.jpg" alt="" style="width: 300px; height: 200px;">
-                        <div class="articleText">
-                            <p>The Legend of Heroes: Trails into Reverie: Обзор</p>
-                        <p>Неидеальный, но красивый эпилог</p>
-                        <span>2 дня назад</span>
-                        </div>
-                    </a>
-                    <a href="" class="articleBlock">
-                        <img src="img/st1.jpg" alt="" style="width: 300px; height: 200px;">
-                        <div class="articleText">
-                            <p>Punch Club 2: Fast Forward: Обзор</p>
-                        <p>Бойцовский клуб в киберпанке</p>
-                        <span>2 дня назад</span>
-                        </div>
-                    </a>
-                    <a href="" class="articleBlock">
-                        <img src="img/st1.jpg" alt="" style="width: 300px; height: 200px;">
-                        <div class="articleText">
-                            <p>Xenonauts 2: Превью по ранней версии</p>
-                        <p>Слишком ранний доступ</p>
-                        <span>2 дня назад</span>
-                        </div>
-                    </a>
-                    <a href="" class="articleBlock">
-                        <img src="img/st1.jpg" alt="" style="width: 300px; height: 200px;">
-                        <div class="articleText">
-                            <p>The Crew Motorfest: Превью по бета-версии</p>
-                        <p>Вот теперь достойный конкурент</p>
-                        <span>2 дня назад</span>
-                        </div>
-                    </a>
+                    </a> 
+                    
+                    <?php } ?>
+
                     <input type="button" value="БОЛЬШЕ СТАТЕЙ" class="articleBtn">
+
                 </div>
 
                 <div class="articleChange">

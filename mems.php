@@ -1,3 +1,31 @@
+<?php
+error_reporting(E_ALL);
+ini_set("display_error", "on");
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+$host='localhost';
+$user='root';
+$pass='';
+$name='proGameDB';
+
+$link=mysqli_connect($host, $user, $pass, $name);
+$memsQuery="SELECT * FROM publications  WHERE type=3 ORDER BY  createdOn DESC LIMIT 0,9";
+
+$memData=[];
+$queryResult=mysqli_query($link, $memsQuery);
+$resultRow=mysqli_fetch_assoc($queryResult); //создаёт ассоциативный массив из строки запроса в БД
+
+while($resultRow){
+    $dataRow=[];
+    $dataRow['id']=$resultRow['id'];
+    $dataRow['picture']=$resultRow['picture'];
+    array_push($memData, $resultRow);
+    $resultRow=mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
+} // переложили данные из результатов БД в массив
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -54,33 +82,16 @@
     </div>
     <div class="memes">
 
-        <div class="mem1 mem">
+    <?php
+    foreach ($memData as $row) {    
+    ?>
+    
+
+        <div class="mem" style="background-image: <?php echo "url('img/memes/".$row['picture'].".jpg')"?>">
         <img src="img/heart (1).png" alt="">
         </div>
-        <div class="mem2 mem">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="mem3 mem">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="mem4 mem">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="mem5 mem">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="mem6 mem">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="mem7 mem">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="mem8 mem">
-            <img src="img/heart (1).png" alt="">
-        </div>
-        <div class="mem9 mem">
-            <img src="img/heart (1).png" alt="">
-        </div>
+
+        <?php } ?>
 
     </div>
     

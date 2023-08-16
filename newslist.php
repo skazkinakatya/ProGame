@@ -1,3 +1,35 @@
+<?php
+error_reporting(E_ALL);
+ini_set("display_error", "on");
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+$host='localhost';
+$user='root';
+$pass='';
+$name='proGameDB';
+
+$link=mysqli_connect($host, $user, $pass, $name);
+$newslistQuery="SELECT * FROM publications  WHERE type=1 ORDER BY createdOn DESC";
+
+$newsListData=[];
+$queryResult=mysqli_query($link, $newslistQuery);
+$resultRow=mysqli_fetch_assoc($queryResult); //создаёт ассоциативный массив из строки запроса в БД
+
+while($resultRow){
+
+    $dataRow=[];
+    $dataRow['id']=$resultRow['id'];
+    $dataRow['title']=$resultRow['title'];
+    $dataRow['picture']=$resultRow['picture'];
+    $dataRow['createdOn']=$resultRow['createdOn'];
+
+    array_push($newsListData, $resultRow);
+
+    $resultRow=mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
+} // переложили данные из результатов БД в массив
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -49,42 +81,22 @@
             <div class="articleContent">
 
                 <div class="articleBlocks">
-                    <a href="news2.php" class="articleBlock">
-                       
-                        <div class="articleText">
-                            <p>PGL анонсировала новую волну продажи билетов на первый мейджор по Counter-Strike 2</p>
-                        <span>2 дня назад</span>
-                        </div>
-                    </a>
-                    <a href="news3.php" class="articleBlock">
-                       
-                        <div class="articleText">
-                            <p>Пять героев, которые больше всех выиграли от патча 7.34b — их винрейт уже заметно вырос</p>
 
-                        <span>2 дня назад</span>
-                        </div>
-                    </a>
-                    <a href="news4.php" class="articleBlock">
+                <?php
+                    for ($i=0; $i < count($newsListData); $i++) { 
+                        $newsItem=$newsListData[$i];     
+                ?>
+
+                    <a href="<?php echo "/news.php?id=".$newsItem['id']?>" class="articleBlock <?php if($i>=5) echo "displayNone"?>">
                        
                         <div class="articleText">
-                            <p>В Valorant появятся реалистичные скины в стиле CS:GO</p>
-                        <span>2 дня назад</span>
+                            <p><?php echo $newsItem['title']?></p>
+                            <span><?php echo $newsItem['createdOn']?></span>
                         </div>
                     </a>
-                    <a href="news5.php" class="articleBlock">
-                       
-                        <div class="articleText">
-                            <p>Новый баг в PUBG — игроки погибают сразу после высадки на карту</p>
-                        <span>2 дня назад</span>
-                        </div>
-                    </a>
-                    <a href="news6.php" class="articleBlock">
-                       
-                        <div class="articleText">
-                            <p>В CS:GO мог появиться эксплойт, позволяющий получать IP-адреса игроков</p>
-                        <span>2 дня назад</span>
-                        </div>
-                    </a>
+                    
+                    <?php } ?>
+
                     <input type="button" value="БОЛЬШЕ НОВОСТЕЙ" class="articleBtn">
                 </div>
 
