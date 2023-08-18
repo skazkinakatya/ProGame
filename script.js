@@ -1,7 +1,6 @@
 let feedbackH=document.querySelector('.feedbackH');
 let feedbackContainer=document.querySelector('.feedbackContainer');
 let close=document.querySelector('.close');
-let userListKey="users";
 feedbackH.addEventListener('click', openContainer);
 function openContainer() {
     feedbackContainer.classList.add('feedbackContainerOpen');

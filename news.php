@@ -1,3 +1,44 @@
+<?php
+error_reporting(E_ALL);
+ini_set("display_error", "on");
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+$host='localhost';
+$user='root';
+$pass='';
+$name='proGameDB';
+
+$link=mysqli_connect($host, $user, $pass, $name);
+$newsId=$_GET['id'];
+$newsQuery="SELECT * FROM publications  WHERE type=1 AND id=".$newsId." ORDER BY createdOn DESC";
+
+$queryResult=mysqli_query($link, $newsQuery);
+$resultRow=mysqli_fetch_assoc($queryResult); //создаёт ассоциативный массив из строки запроса в БД
+
+
+$commentsQuery="SELECT comments.*,users.login FROM comments INNER JOIN users ON comments.userId=users.id WHERE publicationId=".$newsId."  ORDER BY createdOn DESC";
+
+$commentsData=[];
+$queryResult=mysqli_query($link, $commentsQuery);
+$commentRow=mysqli_fetch_assoc($queryResult); //создаёт ассоциативный массив из строки запроса в БД
+
+while($commentRow){
+
+    $dataRow=[];
+    $dataRow['id']=$commentRow['id'];
+    $dataRow['userId']=$commentRow['userId'];
+    $dataRow['login']=$commentRow['login'];
+    $dataRow['text']=$commentRow['text'];
+    $dataRow['createdOn']=$commentRow['createdOn'];
+
+    array_push($commentsData, $dataRow);
+
+    $commentRow=mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
+} // переложили данные из результатов БД в массив
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -6,6 +47,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style4.css">
+    <link rel="stylesheet" href="styleGeneral.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -31,7 +73,7 @@
                 </nav>
             </div>
 
-            <div class="login">
+            <div class="login" id="divLogin">
                 <a href="autorize.php"><p>Войти</p></a>
                 <span>/</span>
                 <a href="registration.php"><p>Зарегестрироваться</p></a>
@@ -40,6 +82,23 @@
                 <p id="userName"></p>
                 <span>/</span>
                 <a href="logout.php"><p>Выйти</p></a>
+            </div>
+
+            <div class="menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="menu">
+                <div class=navBurger>
+                    <ul>
+                        <li><a href="newslist.php">Новости</a></li>
+                        <li><a href="articles.php">Статьи</a></li>
+                        <li><a href="cosplay.php">Косплей</a></li>
+                        <li><a href="mems.php">Развлечения</a></li>
+                    </ul>
+                </div>
             </div>
             
         </div>
@@ -51,49 +110,20 @@
         <div class="navigation">
             <p><a href="">Главная ></a></p>
             <p><a href="">Новости ></a></p>
-            <p><a href="">В S.T.A.L.K.E.R. 2 дадут сыграть этим летом, но не всем</a></p>
+            <p><a href=""><?php echo $resultRow['title'] ?></a></p>
         </div>
 
         <div class="newsH">
-            <p>В S.T.A.L.K.E.R. 2 дадут сыграть этим летом, но не всем</p>
+            <p><?php echo $resultRow['title'] ?></p>
         </div>
         <div class="newsTime">
-            <span> 7 часов назад</span>
+            <span><?php echo $resultRow['createdOn']?></span>
         </div>
 
         <div class="newsContent">
-            <p>
-                Классический текст Lorem Ipsum, используемый с XVI века
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            </p>
-
             <div class="imgAndP">
-                <img src="img/st4.jpg" alt="">
-                <p>"At vero eos et accusamus et iusto odio dignissimos ducimus
-                    qui blanditiis praesentium voluptatum deleniti atque corrupti
-                    quos dolores et quas molestias excepturi sint occaecati cupiditate
-                    non provident, similique sunt in culpa qui officia deserunt mollitia
-                    animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-                    est et expedita distinctio. Nam libero tempore, cum soluta nobis est
-                    eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere
-                    possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem
-                    quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet
-                    ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum
-                    rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores
-                    alias consequatur aut perferendis doloribus asperiores repellat."
-
-                    "On the other hand, we denounce with
-                    righteous indignation and dislike men who are so beguiled
-                    and demoralized by the charms of pleasure of the moment, so blinded by desire
-                    , that they cannot foresee the pain and trouble that are bound to ensue;
-                    and equal blame belongs to those who fail in their duty through weakness of will
-                    , which is the same as saying through shrinking from toil and pain.
-                    These cases are perfectly simple and easy to distinguish. In a free hour, when our power
-                    of choice is untrammelled and when nothing prevents our being able to do what we like best
+            <img src="<?php echo "img/news/".$resultRow['picture'].".jpg"?>" alt="">
+                <p><?php echo $resultRow['text'] ?>
                 </p>
             </div>
         </div>
@@ -103,8 +133,20 @@
                <p>0 комментариев</p>
             </div>
             <input type="text" name="" id="comment" placeholder="Введите сообщение">
+            <input type="hidden" name="" id="publicationId" value="<?php echo $newsId ?>"> <!--Создаём скрытое поле с id публикации-->
             <input type="button" value="Отправить" id="sendComment">
         </div>
+
+        <?php
+                    foreach ($commentsData as $comment) {
+                     
+                ?>
+            <div class="comment">
+                <p><?php echo $comment['login'] ?></p>
+                <p><?php echo $comment['createdOn'] ?></p>
+                <p><?php echo $comment['text'] ?></p>
+            </div>
+            <?php } ?>
 
 
     </div>
@@ -136,7 +178,8 @@
             <span>Все права защищены ©</span>
         </div>
     </footer>
-    <script src=header.js></script>
+    <script src="header.js"></script>
+    <script src="createComment.js"></script>
 </body>
 
 </html>

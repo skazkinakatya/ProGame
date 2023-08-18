@@ -1,118 +1,4 @@
-body{
-    background-color: #151C24;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-*{
-    font-family: 'Inter', sans-serif;
-    color: white;
-    padding: 0px auto;
-    margin: 0;
-    box-sizing: border-box;
-}
-header{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: #1C2431;
-}
-.navContainer{
-    display: flex;
-    align-items: center;
-}
-.header{
-    min-width: 1440px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.menu-btn {
-	width: 30px;
-	height: 30px;
-	position: relative;
-	z-index:2;
-	overflow: hidden;
-}
-.menu-btn span {
-	width: 30px;
-	height: 5px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: #ffffff;
-	transition: all 0.5s;
-}
-.menu-btn span:nth-of-type(2) {
-	top: calc(50% - 5px);
-}
-.menu-btn span:nth-of-type(3) {
-	top: calc(50% + 5px);
-}
-.menu {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 200px;
-	padding: 15px;
-    background: #151C24;
-	transform: translateX(-100%);
-	transition: transform 0.5s; 
-}
-.menu.active {
-	transform: translateX(0);
-}
-.menu li {
-	list-style-type: none;
-    color: white;
-    margin-top: 3%;
-}
-.menu-btn.active span:nth-of-type(1) {
-    display: none;
-  }
-  .menu-btn.active span:nth-of-type(2) {
-    top: 50%;
-    transform: translate(-50%, 0%) rotate(45deg);  
-  }
-  .menu-btn.active span:nth-of-type(3) {
-    top: 50%;
-    transform: translate(-50%, 0%) rotate(-45deg); 
-  }
 
-.login{
-    display: flex;
-}
-.login p{
-    padding-left: 5px;
-}
-.login span{
-    padding-left: 5px;
-}
-.displayNone{
-    display: none;
-}
-
-nav ul li{
-    list-style: none;
-    display: inline-block;
-}
-nav ul li a{
-    text-decoration: none;
-    padding-left: 10px;
-    font-size: 20px;
-}
-nav ul li a:hover{
-    color: #EC6407;
-    text-decoration: underline;
-}
-.container{
-    background-color: #1C2431;
-    max-width: 1440px;
-    margin-top: 2%;
-}
 .popularH{
     display: flex;
     align-items: center;
@@ -463,12 +349,6 @@ footer{
 
 
 @media (min-width: 1024px) and (max-width: 1440px) { 
-    .container{
-        max-width: 1024px;
-    }
-    .header{
-        min-width: 1024px;
-    }
     .cosplayCompilation p{
         font-size: 13px;
     }
@@ -483,12 +363,7 @@ footer{
 
 
  @media (max-width: 1024px) and (min-width: 640px) {
-    .container{
-        max-width: 640px;
-    }
-    .header{
-        min-width: 640px;
-    }
+
     .popularImg1, .popularImg2 ,.popularImg3 ,.popularImg4 {
         width: 100%;
     }
@@ -542,15 +417,6 @@ footer{
     .popularImgSpan{
         top: 70%;
     }
-    .feedback{
-        display: none;
-    }
-    nav{
-        display: none;
-    }
-    .login{
-        display: none;
-    }
   
 
 }
@@ -558,12 +424,7 @@ footer{
 
 
 @media (max-width: 640px) and (min-width: 480px){
-    .container{
-        max-width: 480px;
-    }
-    .header{
-        min-width: 480px;
-    }
+
     .popularImg1, .popularImg2 ,.popularImg3 ,.popularImg4 {
         width: 100%;
     }
@@ -620,23 +481,9 @@ footer{
     .popularImgSpan{
         top: 70%;
     }
-    .feedback{
-        display: none;
-    }
-    nav{
-        display: none;
-    }
-    .login{
-        display: none;
-    }
 }
 @media (max-width: 480px) and (min-width: 290px){
-    .container{
-        max-width: 290px;
-    }
-    .header{
-        min-width: 290px;
-    }
+
     .popularH p{
         font-size: 18px;
     }
@@ -704,15 +551,6 @@ footer{
     }
     .moreCosplay{
         margin-top: 2%;
-    }
-    .feedback{
-        display: none;
-    }
-    nav{
-        display: none;
-    }
-    .login{
-        display: none;
     }
     .userName{
         font-size: 12px;

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style7.css">
+    <link rel="stylesheet" href="styleGeneral.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -31,7 +32,7 @@
                 </nav>
             </div>
 
-            <div class="login">
+            <div class="login" id="divLogin">
                 <a href="autorize.php"><p>Войти</p></a>
                 <span>/</span>
                 <a href="registration.php"><p>Зарегестрироваться</p></a>
@@ -41,6 +42,24 @@
                 <span>/</span>
                 <a href="logout.php"><p>Выйти</p></a>
             </div>
+
+            <div class="menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="menu">
+                <div class=navBurger>
+                    <ul>
+                        <li><a href="newslist.php">Новости</a></li>
+                        <li><a href="articles.php">Статьи</a></li>
+                        <li><a href="cosplay.php">Косплей</a></li>
+                        <li><a href="mems.php">Развлечения</a></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </header>
 
@@ -83,7 +102,8 @@
             <span>Все права защищены ©</span>
         </div>
     </footer>
-    <script src=header.js></script>
+    <script src="script.js"></script>
+    <script src="header.js"></script>
 </body>
 
 </html>
