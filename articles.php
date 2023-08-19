@@ -8,7 +8,12 @@ $pass='';
 $name='proGameDB';
 
 $link=mysqli_connect($host, $user, $pass, $name);
-$articlesQuery="SELECT * FROM publications  WHERE type=2 ORDER BY createdOn DESC";
+
+$articlesQuery="SELECT * FROM publications  WHERE type=2";
+if(isset($_GET['gameId'])){
+    $articlesQuery=$articlesQuery."  AND gameId=".$_GET['gameId'];
+}
+$articlesQuery=$articlesQuery."  ORDER BY createdOn DESC";
 
 $articlesData=[];
 $queryResult=mysqli_query($link, $articlesQuery);
@@ -27,7 +32,23 @@ while($resultRow){
     $resultRow=mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
 } // переложили данные из результатов БД в массив
 
+$gamesQuery="SELECT * FROM games";
 
+$gamesData=[];
+$queryResult=mysqli_query($link, $gamesQuery);
+$resultRow=mysqli_fetch_assoc($queryResult); //создаёт ассоциативный массив из строки запроса в БД
+
+while($resultRow){
+
+    $dataRow=[];
+    $dataRow['id']=$resultRow['id'];
+    $dataRow['title']=$resultRow['title'];
+    $dataRow['picture']=$resultRow['picture'];
+
+    array_push($gamesData, $resultRow);
+
+    $resultRow=mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
+} // переложили данные из результатов БД в массив
 ?>
 
 <!DOCTYPE html>
@@ -110,7 +131,7 @@ while($resultRow){
                         $article=$articlesData[$i];     
                 ?>
 
-                    <a href="<?php echo "/article.php?id=".$article['id']?>" class="articleBlock <?php if($i>=5) echo "displayNone"?>">
+                    <a href="<?php echo "/article.php?id=".$article['id']?>" class="publication articleBlock <?php if($i>=5) echo "displayNone"?>">
                         <img src="<?php echo "img/articles/".$article['picture'].".jpg"?>" alt="" style="width: 300px; height: 200px;">
                         <div class="articleText">
                             <p><?php echo $article['title']?></p>
@@ -120,7 +141,7 @@ while($resultRow){
                     
                     <?php } ?>
 
-                    <input type="button" value="БОЛЬШЕ СТАТЕЙ" class="articleBtn">
+                    <input type="button" value="БОЛЬШЕ СТАТЕЙ" class="articleBtn" id="moreBtn">
 
                 </div>
 
@@ -133,50 +154,19 @@ while($resultRow){
                         </div>
 
                         <div class="categoryContent">
-                            <div class="games">
+                        <div class="games">
+
+                                <?php 
+                                foreach ($gamesData as $game) {?>
+                                <a href="<?php echo "/articles.php?gameId=".$game['id']?>">
                                 <div class="game">
-                                    <img src="img/apex-legends-logo-41861.png" alt="">
-                                    <p>APEX</p>
+                                    <img src="<?php echo "img/games/".$game['picture'].".png"?>" alt="">
+                                    <p><?php echo $game['title'] ?></p>
                                 </div>
-                                <div class="game">
-                                    <img src="img/cs.png" alt="">
-                                    <p>Counter-Strike</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/pubg.png" alt="">
-                                    <p>PUBG</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/wot.png" alt="">
-                                    <p>WOT</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/Genshin_Impact.png" alt="">
-                                    <p>Genshin Impact</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/dota-2.png" alt="">
-                                    <p>DOTA</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/Valorant-Logo.png" alt="">
-                                    <p>Valorant</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/Rust-Logo.png" alt="">
-                                    <p>RUST</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/fortnite.png" alt="">
-                                    <p>FORTNITE</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/GTA.png" alt="">
-                                    <p>GTA</p>
-                                </div>
+                                </a>
+                                <?php } ?>
                             </div>
 
-                            <input type="text" name="" placeholder="Введите название игры" id="gameName">
                     </div>
                 </div>
 
@@ -211,6 +201,8 @@ while($resultRow){
             </form>
         </div>
     </div>
+    <script src="more.js"></script>
+    <script src="script.js"></script>
     <script src="header.js"></script>
 </body>
 </html>

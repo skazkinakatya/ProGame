@@ -23,25 +23,31 @@
         return $text;
     }
     
-    if($isPosted){ // Провотит проверку формы
+    if($isPosted){ // Проводит проверку формы
         $loginEnter=mysqli_real_escape_string($link, normalize($_POST['loginEnter']));
-        $passwordEnter=md5(normalize($_POST['passwordEnter']));
+        $passwordEnter=normalize($_POST['passwordEnter']);
     
-        $userData=mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM users WHERE (login = '".$loginEnter."'    OR tel = '".$loginEnter."'    OR email = '".$loginEnter."')    AND password = '".$passwordEnter."'"));
+        $userData=mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM users WHERE (login = '".$loginEnter."'    OR tel = '".$loginEnter."'    OR email = '".$loginEnter."')"));
         if(!$userData){
             $loginError="Неверное имя пользователя или пароль";
         }
         else{
-            $userInfo=[];
-            $userInfo['id']=$userData['id'];
-            $userInfo['login']=$userData['login'];
-            $userInfoJson=json_encode($userInfo, JSON_UNESCAPED_UNICODE);
-            session_start();
-            $_SESSION['userId']=$userData['id'];
-            setcookie('user', $userInfoJson, time()+60*60*24*14);
-            header("Location: /index.php");
-            die();
+            if(password_verify($passwordEnter, $userData['password'])){
+                $userInfo=[];
+                $userInfo['id']=$userData['id'];
+                $userInfo['login']=$userData['login'];
+                $userInfoJson=json_encode($userInfo, JSON_UNESCAPED_UNICODE);
+                session_start();
+                $_SESSION['userId']=$userData['id'];
+                setcookie('user', $userInfoJson, time()+60*60*24*14);
+                header("Location: /index.php");
+                die();
+            } 
+            else{
+                $loginError="Неверное имя пользователя или пароль";
+            }
         }
+        
     }
 
 ?>
@@ -52,6 +58,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styleGeneral.css">
     <link rel="stylesheet" href="style9.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,7 +114,7 @@
             <input type="submit" value="ВОЙТИ" name="Enter" id="Enter">
         </form>
         <?php if($loginError!=""){ ?>
-            <p> <?php echo $loginError ?>
+            <p class="errors"> <?php echo $loginError ?>
             </p>
             <?php
         }

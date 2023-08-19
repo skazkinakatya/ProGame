@@ -8,7 +8,7 @@ $pass='';
 $name='proGameDB';
 
 $link=mysqli_connect($host, $user, $pass, $name);
-$articleId=$_GET['id'];
+$articleId=mysqli_real_escape_string($link, $_GET['id']);
 $articleQuery="SELECT * FROM publications  WHERE type=2 AND id=".$articleId." ORDER BY createdOn DESC";
 
 $queryResult=mysqli_query($link, $articleQuery);
@@ -123,23 +123,34 @@ while($commentRow){
 
         <div class="discussion">
             <div class="count">
-               <p>0 комментариев</p>
+               <span>Колличество комментариев:  </span>
+               <span id="countComment"><?php echo count($commentsData)?></span>
             </div>
             <input type="text" name="" id="comment" placeholder="Введите сообщение">
             <input type="hidden" name="" id="publicationId" value="<?php echo $articleId ?>"> <!--Создаём скрытое поле с id публикации-->
             <input type="button" value="Отправить" id="sendComment">
             <p id="noComment"></p>
         </div>
+
+        <div class="comments" id="comments">
         <?php
                     foreach ($commentsData as $comment) {
                      
                 ?>
+                
             <div class="comment">
-                <p><?php echo $comment['login'] ?></p>
-                <p><?php echo $comment['createdOn'] ?></p>
-                <p><?php echo $comment['text'] ?></p>
+
+                <div class="containerComment">
+                <p class="timeComment"><?php echo $comment['createdOn'] ?></p>
+                <p class="loginComment"><?php echo $comment['login'] ?></p>
+               
+                </div>
+                <p class="textComment"><?php echo $comment['text'] ?></p>
+        </div>
+        <?php } ?>
+
+        
             </div>
-            <?php } ?>
 
 
     </div>
@@ -172,6 +183,7 @@ while($commentRow){
         </div>
     </footer>
     <script src="header.js"></script>
+    <script src="script.js"></script>
     <script src="createComment.js"></script>
 
 </body>

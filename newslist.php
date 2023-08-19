@@ -8,11 +8,18 @@ $pass='';
 $name='proGameDB';
 
 $link=mysqli_connect($host, $user, $pass, $name);
-$newslistQuery="SELECT * FROM publications  WHERE type=1 ORDER BY createdOn DESC";
+
+$newslistQuery="SELECT * FROM publications  WHERE type=1";
+if(isset($_GET['gameId'])){
+    $newslistQuery=$newslistQuery."  AND gameId=".$_GET['gameId'];
+}
+$newslistQuery=$newslistQuery."  ORDER BY createdOn DESC";
+
 
 $newsListData=[];
 $queryResult=mysqli_query($link, $newslistQuery);
 $resultRow=mysqli_fetch_assoc($queryResult); //создаёт ассоциативный массив из строки запроса в БД
+
 
 while($resultRow){
 
@@ -27,6 +34,24 @@ while($resultRow){
     $resultRow=mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
 } // переложили данные из результатов БД в массив
 
+
+$gamesQuery="SELECT * FROM games";
+
+$gamesData=[];
+$queryResult=mysqli_query($link, $gamesQuery);
+$resultRow=mysqli_fetch_assoc($queryResult); //создаёт ассоциативный массив из строки запроса в БД
+
+while($resultRow){
+
+    $dataRow=[];
+    $dataRow['id']=$resultRow['id'];
+    $dataRow['title']=$resultRow['title'];
+    $dataRow['picture']=$resultRow['picture'];
+
+    array_push($gamesData, $resultRow);
+
+    $resultRow=mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
+} // переложили данные из результатов БД в массив
 
 ?>
 
@@ -106,7 +131,7 @@ while($resultRow){
                         $newsItem=$newsListData[$i];     
                 ?>
 
-                    <a href="<?php echo "/news.php?id=".$newsItem['id']?>" class="articleBlock <?php if($i>=5) echo "displayNone"?>">
+                    <a href="<?php echo "/news.php?id=".$newsItem['id']?>" class="publication articleBlock <?php if($i>=5) echo "displayNone"?>">
                        
                         <div class="articleText">
                             <p><?php echo $newsItem['title']?></p>
@@ -116,7 +141,7 @@ while($resultRow){
                     
                     <?php } ?>
 
-                    <input type="button" value="БОЛЬШЕ НОВОСТЕЙ" class="articleBtn">
+                    <input type="button" value="БОЛЬШЕ НОВОСТЕЙ" class="articleBtn" id="moreBtn">
                 </div>
 
                 <div class="articleChange">
@@ -129,55 +154,19 @@ while($resultRow){
 
                         <div class="categoryContent">
                             <div class="games">
+
+                                <?php 
+                                foreach ($gamesData as $game) {?>
+                                <a href="<?php echo "/newslist.php?gameId=".$game['id']?>">
                                 <div class="game">
-                                    <img src="img/apex-legends-logo-41861.png" alt="">
-                                    <p>APEX</p>
+                                    <img src="<?php echo "img/games/".$game['picture'].".png"?>" alt="">
+                                    <p><?php echo $game['title'] ?></p>
                                 </div>
-                                <div class="game">
-                                    <img src="img/cs.png" alt="">
-                                    <p>Counter-Strike</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/pubg.png" alt="">
-                                    <p>PUBG</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/wot.png" alt="">
-                                    <p>WOT</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/Genshin_Impact.png" alt="">
-                                    <p>Genshin Impact</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/dota-2.png" alt="">
-                                    <p>DOTA</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/Valorant-Logo.png" alt="">
-                                    <p>Valorant</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/Rust-Logo.png" alt="">
-                                    <p>RUST</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/fortnite.png" alt="">
-                                    <p>FORTNITE</p>
-                                </div>
-                                <div class="game">
-                                    <img src="img/GTA.png" alt="">
-                                    <p>GTA</p>
-                                </div>
+                                </a>
+                                <?php } ?>
                             </div>
-
-                            <input type="text" name="" placeholder="Введите название игры" id="gameName">
+                        </div>
                     </div>
-                </div>
-
-            </div>
-
-
 
         </div>
         
@@ -199,13 +188,18 @@ while($resultRow){
                 <div class="close"></div>
             </div>
             <form class="inputs">
-                <input type="text" class="inputFeedback" placeholder="Имя">
-                <input type="email" name="" id="" class="inputFeedback" placeholder="E-mail">
-                <textarea name="" id="" cols="23" rows="3" class="inputFeedback" placeholder="Введите сообщение"></textarea>
-                <button id="btnFeedback">Отправить</button>
+                <input type="text" class="inputFeedback" placeholder="Имя" id="nameFeedback">
+                <input type="email" name="" id="emailFeedback" class="inputFeedback"  placeholder="E-mail">
+                <textarea name="" id="textFeedback" cols="23" rows="3" class="inputFeedback" placeholder="Введите сообщение"></textarea>
+                <span id="errorFeedback"></span>
+                <input type="button" id="btnFeedback" value="Отправить">
             </form>
         </div>
     </div>
+    </div>
+    <script src="more.js"></script>
+    <script src="createFeedback.js"></script>
+    <script src="script.js"></script>
     <script src="header.js"></script>
 </body>
 </html>

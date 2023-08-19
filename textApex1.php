@@ -102,6 +102,7 @@
             <span>Все права защищены ©</span>
         </div>
     </footer>
+    <script src="script.js"></script>
     <script src="header.js"></script>
 </body>
 

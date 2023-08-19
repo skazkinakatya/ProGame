@@ -8,7 +8,7 @@ $pass='';
 $name='proGameDB';
 
 $link=mysqli_connect($host, $user, $pass, $name);
-$newsId=$_GET['id'];
+$newsId=mysqli_real_escape_string($link, $_GET['id']);
 $newsQuery="SELECT * FROM publications  WHERE type=1 AND id=".$newsId." ORDER BY createdOn DESC";
 
 $queryResult=mysqli_query($link, $newsQuery);
@@ -130,13 +130,16 @@ while($commentRow){
 
         <div class="discussion">
             <div class="count">
-               <p>0 комментариев</p>
+                <span>Колличество комментариев:  </span>
+                <span id="countComment"><?php echo count($commentsData)?></span>
             </div>
             <input type="text" name="" id="comment" placeholder="Введите сообщение">
             <input type="hidden" name="" id="publicationId" value="<?php echo $newsId ?>"> <!--Создаём скрытое поле с id публикации-->
             <input type="button" value="Отправить" id="sendComment">
         </div>
 
+
+        <div class="comments" id="comments">
         <?php
                     foreach ($commentsData as $comment) {
                      
@@ -147,7 +150,7 @@ while($commentRow){
                 <p><?php echo $comment['text'] ?></p>
             </div>
             <?php } ?>
-
+        </div>
 
     </div>
 

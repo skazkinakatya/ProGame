@@ -1,6 +1,8 @@
 <?php 
+error_reporting(E_ALL);
+ini_set("display_error", "on");
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-    $time = date('Y-m-d H:i:s');
     $isPosted=$_SERVER['REQUEST_METHOD'] === 'POST';
 
 
@@ -24,16 +26,14 @@
         $name='proGameDB';
 
         $link=mysqli_connect($host, $user, $pass, $name);
-        
-        $publicationId=mysqli_real_escape_string($link, $data['publicationId']);
-        $userId=mysqli_real_escape_string($link, $data['userId']);
-        $normalText=mysqli_real_escape_string($link, normalize($data['comment']));
 
-       
-        $sql="INSERT INTO `comments` (`publicationId`, `userId`, `createdOn`, `text`) VALUES (? , ? , ? , ? )";
+        $userName=mysqli_real_escape_string($link, $data['userName']);
+        $userEmail=mysqli_real_escape_string($link, $data['email']);
+        $normalText=mysqli_real_escape_string($link, normalize($data['text']));
+        $sql="INSERT INTO `feedback` (`name`, `email`, `text`) VALUES (? , ? , ? )";
         $command=$link->prepare($sql);
-        
-        $command->bind_param("ssss", $publicationId, $userId, $time, $normalText);
+    
+        $command->bind_param("sss", $userName, $userEmail, $normalText);
         $command->execute();
         mysqli_close($link);
     }

@@ -14,7 +14,6 @@
         $text = trim($text);
         $text = stripslashes($text);
         $text = htmlspecialchars($text);
-
         return $text;
     }
 
@@ -68,11 +67,11 @@
 
         return $validationErrors;
     } 
-    $isPosted=$_SERVER['REQUEST_METHOD'] === 'POST';  //Проверка метода, которым мы пришли на страницу
+    $isPosted=$_SERVER['REQUEST_METHOD'] === 'POST';  //Проверка метода, которым мы пришли на страницу, чтобы обрабатывать пользовательский ввод в случае поста
     $isValid=true;
     $validationErrors=[];
 
-    if($isPosted){ // Проводтит проверку формы
+    if($isPosted){ // Проводит проверку формы
         $loginNameReg=normalize($_POST['loginNameReg']);
         $nameReg=normalize($_POST['nameReg']);
         $emailReg=normalize($_POST['emailReg']);
@@ -81,13 +80,18 @@
 
         $validationErrors=validate($link, $loginNameReg, $nameReg, $emailReg, $numberReg, $passwordReg);
         $isValid=count($validationErrors)===0;
-    
+        $loginNameReg=mysqli_real_escape_string($link, $loginNameReg);
+        $nameReg=mysqli_real_escape_string($link, $nameReg);
+        $emailReg=mysqli_real_escape_string($link, $emailReg);
+        $numberReg=mysqli_real_escape_string($link, $numberReg);
+        $passwordReg=password_hash($passwordReg, PASSWORD_DEFAULT);
+        
         
         if($isValid){
            try{
             $sql="INSERT INTO `users` (`login`, `tel`, `email`, `name`, `password`) VALUES (? , ? , ? , ? , ? )";
             $command=$link->prepare($sql);
-            $command->bind_param("sssss", $loginNameReg, $numberReg,$emailReg, $nameReg, md5($passwordReg));
+            $command->bind_param("sssss", $loginNameReg, $numberReg,$emailReg, $nameReg, ($passwordReg));
             $command->execute();
             mysqli_close($link);
             header("Location: /autorize.php");
@@ -111,6 +115,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style9.css">
+    <link rel="stylesheet" href="styleGeneral.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -168,7 +173,7 @@
         </form>
         <?php
         foreach ($validationErrors as $errorMessage) { ?> 
-        <p>
+        <p class="errors">
             <?php echo $errorMessage ?> 
         </p>
             <?php

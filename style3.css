@@ -84,6 +84,38 @@
     border: none;
     outline: none;
 }
+#sendComment:hover{
+    background-color: #EC6407;
+}
+/* форма комментариев: */
+
+
+.comment{
+    margin-top: 1%;
+    padding-left: 2%;
+    background-color: #151C24;
+}
+
+
+
+.loginComment{
+    font-weight: bold;
+    margin-left: 1%;
+    color: #EC6407;
+}
+.timeComment{
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.298);
+}
+.textComment{
+    margin-top: 1%;
+    padding-bottom: 1%;
+    
+}
+.containerComment{
+    display: flex;
+    align-items: center;
+}
 
 @media (min-width: 1024px) and (max-width: 1440px) { 
     .cosplayCompilation p{

@@ -268,11 +268,11 @@ while($resultRow){
                 <span>Обратная связь</span>
                 <div class="close"></div>
             </div>
-            <form class="inputs">
-                <input type="text" class="inputFeedback" placeholder="Имя">
-                <input type="email" name="" id="" class="inputFeedback" placeholder="E-mail">
-                <textarea name="" id="" cols="23" rows="3" class="inputFeedback" placeholder="Введите сообщение"></textarea>
-                <button id="btnFeedback">Отправить</button>
+            <form class="inputs" method="POST">
+                <input type="text" class="inputFeedback" id="nameFeedback" placeholder="Имя">
+                <input type="email" name="" id="emailFeedback" class="inputFeedback" placeholder="E-mail">
+                <textarea name="" id="textFeedback" cols="23" rows="3" class="inputFeedback" placeholder="Введите сообщение"></textarea>
+                <input type="submit" id="btnFeedback" value="Отправить">
             </form>
         </div>
     </div>
