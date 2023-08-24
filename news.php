@@ -2,12 +2,7 @@
 error_reporting(E_ALL);
 ini_set("display_error", "on");
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$host='localhost';
-$user='root';
-$pass='';
-$name='proGameDB';
-
-$link=mysqli_connect($host, $user, $pass, $name);
+require("connect.php");
 $newsId=mysqli_real_escape_string($link, $_GET['id']);
 $newsQuery="SELECT * FROM publications  WHERE type=1 AND id=".$newsId." ORDER BY createdOn DESC";
 
@@ -45,13 +40,14 @@ while($commentRow){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo $resultRow['title'] ?></title>
     <link rel="stylesheet" href="style4.css">
     <link rel="stylesheet" href="styleGeneral.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+        <link rel="shortcut icon" href="img/icons8-visual-game-boy-color-pixels-120.png" type="image/x-icon">
 </head>
 
 <body>
@@ -145,10 +141,14 @@ while($commentRow){
                      
                 ?>
             <div class="comment">
-                <p><?php echo $comment['login'] ?></p>
-                <p><?php echo $comment['createdOn'] ?></p>
-                <p><?php echo $comment['text'] ?></p>
-            </div>
+
+<div class="containerComment">
+<p class="timeComment"><?php echo $comment['createdOn'] ?></p>
+<p class="loginComment"><?php echo $comment['login'] ?></p>
+
+</div>
+<p class="textComment"><?php echo $comment['text'] ?></p>
+</div>
             <?php } ?>
         </div>
 
@@ -182,7 +182,9 @@ while($commentRow){
         </div>
     </footer>
     <script src="header.js"></script>
+    <script src="script.js"></script>
     <script src="createComment.js"></script>
+    <script src="createFeedback.php"></script>
 </body>
 
 </html>

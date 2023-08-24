@@ -15,15 +15,10 @@
         return $text;
     }
 
-    if($isPosted && $data){ //Обратились через POST и получили данные
+    if($isPosted && $data){ //Если обратились через POST и получили данные
 
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $host='localhost';
-        $user='root';
-        $pass='';
-        $name='proGameDB';
-
-        $link=mysqli_connect($host, $user, $pass, $name);
+        require("connect.php");
         
         $publicationId=mysqli_real_escape_string($link, $data['publicationId']);
         $userId=mysqli_real_escape_string($link, $data['userId']);

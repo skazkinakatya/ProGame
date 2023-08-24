@@ -2,12 +2,7 @@
 error_reporting(E_ALL);
 ini_set("display_error", "on");
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$host='localhost';
-$user='root';
-$pass='';
-$name='proGameDB';
-
-$link=mysqli_connect($host, $user, $pass, $name);
+require("connect.php");
 $cosplayQuery="SELECT * FROM publications  WHERE type=4 ORDER BY  createdOn DESC LIMIT 0,9";
 
 $cosplayData=[];
@@ -33,13 +28,14 @@ while($resultRow){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Косплей</title>
     <link rel="stylesheet" href="style5.css">
     <link rel="stylesheet" href="styleGeneral.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+        <link rel="shortcut icon" href="img/icons8-visual-game-boy-color-pixels-120.png" type="image/x-icon">
 </head>
 
 <body>
@@ -138,7 +134,6 @@ while($resultRow){
     ?>
 
         <div class="newsFeed" style="background-image: <?php echo "url('img/cosplay/".$row['picture'].".jpg')"?>">
-        <img src="img/heart (1).png" alt="">
         </div>
 
         <?php } ?>

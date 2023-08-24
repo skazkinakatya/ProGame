@@ -2,12 +2,7 @@
 error_reporting(E_ALL);
 ini_set("display_error", "on");
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$host='localhost';
-$user='root';
-$pass='';
-$name='proGameDB';
-
-$link=mysqli_connect($host, $user, $pass, $name);
+require("connect.php");
 $articleId=mysqli_real_escape_string($link, $_GET['id']);
 $articleQuery="SELECT * FROM publications  WHERE type=2 AND id=".$articleId." ORDER BY createdOn DESC";
 
@@ -43,13 +38,14 @@ while($commentRow){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo $resultRow['title'] ?></title>
     <link rel="stylesheet" href="style3.css">
     <link rel="stylesheet" href="styleGeneral.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+        <link rel="shortcut icon" href="img/icons8-visual-game-boy-color-pixels-120.png" type="image/x-icon">
 </head>
 
 <body>
@@ -95,6 +91,7 @@ while($commentRow){
                         <li><a href="cosplay.php">Косплей</a></li>
                         <li><a href="mems.php">Развлечения</a></li>
                     </ul>
+                    
                 </div>
             </div>
             
@@ -105,8 +102,8 @@ while($commentRow){
     <div class="container">
 
         <div class="navigation">
-            <p><a href="">Главная ></a></p>
-            <p><a href="">Статьи ></a></p>
+            <p><a href="index.php">Главная ></a></p>
+            <p><a href="articles.php">Статьи ></a></p>
             <p><a href=""><?php echo $resultRow['title'] ?></a></p>
         </div>
         <div class="imgArticle" style="background-image: <?php echo "url('img/articles/".$resultRow['picture'].".jpg')"?>">
@@ -185,6 +182,7 @@ while($commentRow){
     <script src="header.js"></script>
     <script src="script.js"></script>
     <script src="createComment.js"></script>
+    <script src="createFeedback.php"></script>
 
 </body>
 

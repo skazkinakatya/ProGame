@@ -2,12 +2,7 @@
 error_reporting(E_ALL);
 ini_set("display_error", "on");
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$host='localhost';
-$user='root';
-$pass='';
-$name='proGameDB';
-
-$link=mysqli_connect($host, $user, $pass, $name);
+require("connect.php");
 
 $newslistQuery="SELECT * FROM publications  WHERE type=1";
 if(isset($_GET['gameId'])){
@@ -66,6 +61,7 @@ while($resultRow){
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="img/icons8-visual-game-boy-color-pixels-120.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -157,7 +153,7 @@ while($resultRow){
 
                                 <?php 
                                 foreach ($gamesData as $game) {?>
-                                <a href="<?php echo "/newslist.php?gameId=".$game['id']?>">
+                                <a href="<?php echo "/newslist.php?gameId=".$game['id']?>" class="gamesA">
                                 <div class="game">
                                     <img src="<?php echo "img/games/".$game['picture'].".png"?>" alt="">
                                     <p><?php echo $game['title'] ?></p>
@@ -171,7 +167,7 @@ while($resultRow){
         </div>
         
     </div>
-
+    </div>
     <footer>
         <div class="footerContent">
             <img src="img/logo.png" alt="">
@@ -196,7 +192,7 @@ while($resultRow){
             </form>
         </div>
     </div>
-    </div>
+    
     <script src="more.js"></script>
     <script src="createFeedback.js"></script>
     <script src="script.js"></script>

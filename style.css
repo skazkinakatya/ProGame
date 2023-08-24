@@ -30,22 +30,22 @@
 }
 .popularImg1{
     width: 60%;
-    background-image: url(img/1.jpg);
+    background-image: url(img/stand.png);
 
 }
 .popularImg2{
     width: 35%;
-    background-image: url(img/2.webp);
+    background-image: url(img/assas.jpg);
 }
 .popularImg3{
     width: 50%;
     margin-top: 2%;
-    background-image: url(img/3.png);
+    background-image: url(img/original.jpg);
 }
 .popularImg4{
     width: 45%;
     margin-top: 2%;
-    background-image: url(img/4.jpg);
+    background-image: url(img/diablo.jpg);
 }
 .newsH{
     margin-top: 2%;
@@ -70,7 +70,6 @@
     justify-content: space-around;
     margin-top: 1%;
     text-decoration: none;
-    border-radius: 7px;
 }
 .popularImgSpan{
     position: relative;
@@ -187,21 +186,31 @@
     display: flex;
     justify-content: space-between;
 }
+.cosplayGirl1{
+    background-image: url(img/girl\ 1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.cosplayGirl2{
+    background-image: url(img/girl\ 2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
 .cosplayGirl1, .cosplayGirl2{
     width: 45%;
-    height: 550px;
+    height: 507px;
     text-align: center;
 }
+
 .cosplayGirl1 p a, .cosplayGirl2 p a{
     color: #EC6407;
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
 }
-.cosplayGirl1 img, .cosplayGirl2 img{
-    width: 100%;
-    height: 500px;
-}
+
 .cosplayBtn{
     width: 100%;
     display: flex;
@@ -215,6 +224,9 @@
     font-weight: 900;
     border: none;
     border-radius: 10px;
+}
+.moreCosplay{
+    margin-top: 5%;
 }
 .moreCosplay:hover{
     color: #EC6407;
@@ -328,12 +340,9 @@ footer{
     .cosplayBlock1{
         width: 100%;
     }
-    .cosplayGirl1 img, .cosplayGirl2 img{
-        width: 100%;
-        height: 240px;
-    }
+   
     .cosplayGirl1 , .cosplayGirl2 {
-        height: auto;
+        height: 250px;
     }
     .cosplayBlock1{
         height: auto;
@@ -392,12 +401,8 @@ footer{
     .cosplayBlock1{
         width: 100%;
     }
-    .cosplayGirl1 img, .cosplayGirl2 img{
-        width: 100%;
-        height: 240px;
-    }
     .cosplayGirl1 , .cosplayGirl2 {
-        height: auto;
+        height: 240px;
     }
     .cosplayBlock1{
         height: auto;
@@ -466,13 +471,8 @@ footer{
     .cosplayBlock1{
         width: 100%;
     }
-    .cosplayGirl1 img, .cosplayGirl2 img{
-        width: 100%;
-        height: 240px;
-    }
-    .cosplayGirl1 , .cosplayGirl2 {
-        height: auto;
-    }
+
+
     .cosplayBlock1{
         height: auto;
     }
@@ -484,7 +484,7 @@ footer{
     }
     .cosplayGirl1{
         width: 100%;
-        height: auto;
+        height: 240px;
     }
     .cosplayGirl2{
         display: none;

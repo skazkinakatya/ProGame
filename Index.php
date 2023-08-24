@@ -1,17 +1,34 @@
 <?php
 error_reporting(E_ALL);
-ini_set("display_error", "on");
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$name = 'proGameDB';
+ini_set("display_error", "off");
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //включаем сообщение об ошибках
 
-$link = mysqli_connect($host, $user, $pass, $name);
-$newslistQuery = "SELECT * FROM publications  WHERE type=1 ORDER BY createdOn DESC LIMIT 0,6";
+require("connect.php");
+
+$newslistQuery = "SELECT * FROM publications  WHERE type=1 ORDER BY createdOn DESC LIMIT 0,6"; //запрос на выборку новостей
 
 $newsListData = [];
 $queryResult = mysqli_query($link, $newslistQuery);
+$resultRow = mysqli_fetch_assoc($queryResult); //создаём ассоциативный массив из строки запроса
+
+while ($resultRow) { // перекладывем данные из результатов БД в массив
+
+    $dataRow = [];
+    $dataRow['id'] = $resultRow['id'];
+    $dataRow['title'] = $resultRow['title'];
+    $dataRow['picture'] = $resultRow['picture'];
+    $dataRow['createdOn'] = $resultRow['createdOn'];
+
+    array_push($newsListData, $resultRow);
+
+    $resultRow = mysqli_fetch_assoc($queryResult);
+}
+
+
+$articlesQuery = "SELECT * FROM publications  WHERE type=2 ORDER BY createdOn DESC LIMIT 0,5"; //запрос на выборку статей
+
+$articlesData = [];
+$queryResult = mysqli_query($link, $articlesQuery);
 $resultRow = mysqli_fetch_assoc($queryResult); //создаёт ассоциативный массив из строки запроса в БД
 
 while ($resultRow) {
@@ -22,29 +39,9 @@ while ($resultRow) {
     $dataRow['picture'] = $resultRow['picture'];
     $dataRow['createdOn'] = $resultRow['createdOn'];
 
-    array_push($newsListData, $resultRow);
-
-    $resultRow = mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
-} // переложили данные из результатов БД в массив
-
-
-$articlesQuery="SELECT * FROM publications  WHERE type=2 ORDER BY createdOn DESC LIMIT 0,5";
-
-$articlesData=[];
-$queryResult=mysqli_query($link, $articlesQuery);
-$resultRow=mysqli_fetch_assoc($queryResult); //создаёт ассоциативный массив из строки запроса в БД
-
-while($resultRow){
-
-    $dataRow=[];
-    $dataRow['id']=$resultRow['id'];
-    $dataRow['title']=$resultRow['title'];
-    $dataRow['picture']=$resultRow['picture'];
-    $dataRow['createdOn']=$resultRow['createdOn'];
-
     array_push($articlesData, $resultRow);
 
-    $resultRow=mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
+    $resultRow = mysqli_fetch_assoc($queryResult); // достаём след.строку из результатов запроса
 } // переложили данные из результатов БД в массив
 
 ?>
@@ -57,12 +54,13 @@ while($resultRow){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ProGame</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styleGeneral.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/icons8-visual-game-boy-color-pixels-120.png" type="image/x-icon">
 </head>
 
 <body>
@@ -133,27 +131,24 @@ while($resultRow){
 
 
         <div class="popularImg">
-            <a href="" class="popularImg1">
+            <a href="article1.php" class="popularImg1">
                 <span class="popularImgSpan">
-                    Нет дыма без огня: новый геймплейный трейлер Mortal Kombat 1 <br>
-                    подтвердил возвращение двух любимцев фанатов
+                «Новая игра +» в Starfield и мысли о TESVI — главное из интервью с Тоддом Говардом
                 </span>
             </a>
-            <a href="" class="popularImg2">
+            <a href="article2.php" class="popularImg2">
                 <span class="popularImgSpan">
-                    В CS2 нашли способ стать бессмертным — <br>
-                    для этого нужно застрять в дверях
+                Assassin’s Creed про Древний Китай теперь называется Assassin’s Creed Jade. Смотрите трейлер
                 </span>
             </a>
-            <a href="" class="popularImg3">
+            <a href="article3.php" class="popularImg3">
                 <span class="popularImgSpan">
-                    Балийский мейджор приближается
+                Официально: S.T.A.L.K.E.R. 2 отложили до начала 2024-го. Смотрите трейлер
                 </span>
             </a>
-            <a href="" class="popularImg4">
+            <a href="article4.php" class="popularImg4">
                 <span class="popularImgSpan">
-                    Рабочие промокоды для Genshin Impact <br>
-                    на июль 2023 года
+                Вампирский сезон Diablo IV стартует 17 октября
                 </span>
             </a>
         </div>
@@ -174,13 +169,12 @@ while($resultRow){
 
                         <p><?php echo $newsItem['title'] ?></p>
                         <span><?php echo $newsItem['createdOn'] ?></span>
-
                     </a>
 
                 <?php } ?>
 
             </div>
-            <input type="button" value="БОЛЬШЕ НОВОСТЕЙ" class="newsBtn">
+            <input type="button" value="БОЛЬШЕ НОВОСТЕЙ" class="newsBtn" onclick="document.location='newslist.php'">
         </div>
 
 
@@ -190,24 +184,24 @@ while($resultRow){
             </div>
             <div class="articleBlocks">
 
-            <?php
-                    for ($i=0; $i < count($articlesData); $i++) { 
-                        $article=$articlesData[$i];     
+                <?php
+                for ($i = 0; $i < count($articlesData); $i++) {
+                    $article = $articlesData[$i];
                 ?>
-                <a href="<?php echo "/article.php?id=".$article['id']?>" class="articleBlock">
-                <img src="<?php echo "img/articles/".$article['picture'].".jpg"?>" alt="" style="width: 300px; height: 200px;">
-                    <div class="articleText">
-                    <p><?php echo $article['title']?></p>
-                    <span><?php echo $article['createdOn']?></span>
-                    </div>
-                </a>
+                    <a href="<?php echo "/article.php?id=" . $article['id'] ?>" class="articleBlock">
+                        <img src="<?php echo "img/articles/" . $article['picture'] . ".jpg" ?>" alt="" style="width: 300px; height: 200px;">
+                        <div class="articleText">
+                            <p><?php echo $article['title'] ?></p>
+                            <span><?php echo $article['createdOn'] ?></span>
+                        </div>
+                    </a>
                 <?php } ?>
-                
+
             </div>
 
         </div>
 
-        <input type="button" value="БОЛЬШЕ СТАТЕЙ" class="articleBtn">
+        <input type="button" value="БОЛЬШЕ СТАТЕЙ" class="articleBtn" onclick="document.location='articles.php'">
 
 
         <div class="cosplay">
@@ -219,15 +213,13 @@ while($resultRow){
                 <div class="cosplayBlock1">
                     <div class="cosplayGirls">
                         <div class="cosplayGirl1">
-                            <img src="img/girl 1.png" alt="">
-                            <p class="userName"><a href="">@username</a></p>
+                            <p class="userName"><a href="">@itlookslikekilled</a></p>
                         </div>
                         <div class="cosplayGirl2">
-                            <img src="img/girl 2.png" alt="">
-                            <p class="userName"><a href="">@username</a></p>
+                            <p class="userName"><a href="">@usagi_lunnaya</a></p>
                         </div>
                     </div>
-                    <input type="button" value="БОЛЬШЕ КОСПЛЕЯ" class="moreCosplay">
+                    <input type="button" value="БОЛЬШЕ КОСПЛЕЯ" class="moreCosplay" onclick="document.location='cosplay.php'">
 
                 </div>
                 <div class="cosplayBlock2">

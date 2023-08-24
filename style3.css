@@ -27,7 +27,7 @@
 .articleH{
     position: relative;
     z-index: 50;
-    top: -50%;
+    top: -25%;
     padding: 2%;
 }
 .autor{
@@ -92,8 +92,10 @@
 
 .comment{
     margin-top: 1%;
-    padding-left: 2%;
+    padding: 1%;
     background-color: #151C24;
+    width: max-content;
+    margin-left: 2%;
 }
 
 
@@ -116,11 +118,14 @@
     display: flex;
     align-items: center;
 }
-
+.container{
+    padding-bottom: 5%;
+}
 @media (min-width: 1024px) and (max-width: 1440px) { 
     .cosplayCompilation p{
         font-size: 13px;
     }
+    
     .moreCompilation{
         font-size: 18px;
     }
@@ -128,14 +133,16 @@
         top: 70%;
         font-size: 14px;
     }
+    .navigation {
+        font-size: 12px;
+    }
  }
 
 @media (max-width: 1024px) and (min-width: 640px) {
-    .articleH p{
-        position: relative;
+    .articleH{
         z-index: 50;
-        top: 30%;
         padding: 2%;
+        top: -30%;
     }
     .imgAndP{
         display: flex;
@@ -149,7 +156,7 @@
         width: 100%;
     }
     .navigation {
-        font-size: 12px;
+        font-size: 9px;
     }
 
   

@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Тест</title>
     <link rel="stylesheet" href="style7.css">
     <link rel="stylesheet" href="styleGeneral.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+        <link rel="shortcut icon" href="img/icons8-visual-game-boy-color-pixels-120.png" type="image/x-icon">
 </head>
 
 <body>
@@ -70,7 +71,7 @@
             <div class="testImg"></div>
         </div>
         <div class="testBtn">
-            <button id="start"> НАЧАТЬ</button>
+            <input type="button" id="start" value=" НАЧАТЬ">
         </div>
 
     </div>

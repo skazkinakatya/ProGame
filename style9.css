@@ -1,6 +1,6 @@
 .formsLogReg{
     padding: 2%;
-    width: 550px;
+    width: max-content;
     height: auto;
     position:absolute;
     z-index: 100;
@@ -15,12 +15,21 @@
     background-color: #151C24;
     border: 1px solid #EC6407;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.regP{
+    margin-left: 7%;
 }
 footer{
     position: absolute;
     bottom: 0%;
 }
-
+#formRegister{
+    width: 500px;
+}
 #formRegister input{
     background-color: #151C24;
     color: #EC6407;
@@ -97,21 +106,43 @@ input[type="number"]:focus {
     color: white;
 }
 
+@media (max-width: 1024px) and (min-width: 640px){
+    .formsLogReg{
+        width: 640px;
+        height: auto;
+        top: 20% !important;
 
+    }
+}
 
 @media (max-width: 640px) and (min-width: 480px) {
 
-    .test p{
-        font-size: 16px;
+    .formsLogReg{
+        width: 480px !important;
+        height: auto;
+        top: 21% !important;
+
+    }
+    #formRegister{
+        width: 350px;
     }
 
   
 }
-@media (max-width: 640px) and (min-width: 290px) {
-    .test p{
-        font-size: 12px;
+@media (max-width: 480px) and (min-width: 290px) {
+    .formsLogReg{
+        width: 290px;
+        height: auto;
+        top: 17% !important;
     }
-    .testImg{
-        height: 300px;
+    .enterP, .regP{
+        font-size: 15px;
     }
+    .regP{
+        margin-left: 5%;
+    }
+    #formRegister{
+        width: 250px;
+    }
+
 }

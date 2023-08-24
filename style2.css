@@ -44,7 +44,7 @@
 }
 .articleChange{
     width: 25%;
-    height: 310px;
+    height: 280px;
     background-color: #151C24;
     margin-top: 1%;
 }
@@ -52,7 +52,6 @@
     width: 70%;
 }
 .category{
-
     padding: 3%;
 }
 .categoryContent{
@@ -65,36 +64,26 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+    padding: 2%;
+}
+.gamesA{
+    text-decoration: none;
+    margin-left: 3%;
+    margin-top: 1%;
 }
 .game{
-    margin-top: 5%;
-    margin-left: 2%;
-    width: max-content;
+    height: 40px;
     padding: 2%;
+    width: max-content;
     display: flex;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.267);
+    border: 1px solid #ec630760;
     border-radius: 5px;
     white-space: nowrap;
     cursor: pointer;
 }
 .game img{
-    width: 20px;
-}
-#gameName{
-    width: 94%;
-    height: 30px;
-    margin-top: 5%;
-    border: 1px solid rgba(255, 255, 255, 0.267);
-    border-radius: 5px;
-    background-color: transparent;
-    outline: none;
-    background-image: url(img/loupe.png);
-    background-size: 20px;
-    background-position: left;
-    background-repeat: no-repeat;
-    text-align: center;
-    background-position-x: 3%;
+    width: 25px;
 }
 .articleBtn{
     margin-top: 2%;

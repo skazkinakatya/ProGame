@@ -20,12 +20,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     if($isPosted && $data){ //Обратились через POST и получили данные
 
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $host='localhost';
-        $user='root';
-        $pass='';
-        $name='proGameDB';
-
-        $link=mysqli_connect($host, $user, $pass, $name);
+        require("connect.php");
 
         $userName=mysqli_real_escape_string($link, $data['userName']);
         $userEmail=mysqli_real_escape_string($link, $data['email']);

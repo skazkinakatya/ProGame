@@ -2,12 +2,7 @@
 error_reporting(E_ALL);
 ini_set("display_error", "on");
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$host='localhost';
-$user='root';
-$pass='';
-$name='proGameDB';
-
-$link=mysqli_connect($host, $user, $pass, $name);
+require("connect.php");
 
 $articlesQuery="SELECT * FROM publications  WHERE type=2";
 if(isset($_GET['gameId'])){
@@ -56,12 +51,13 @@ while($resultRow){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Статьи</title>
     <link rel="stylesheet" href="style2.css">
     <link rel="stylesheet" href="styleGeneral.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="img/icons8-visual-game-boy-color-pixels-120.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -115,12 +111,7 @@ while($resultRow){
 
         <div class="articleH">
             <p>Статьи</p>
-        </div>       
-
-        <div class="articleBtns">
-           <input type="button" value="Все статьи" id="allArticle">
-           <input type="button" value="Подборки игр" id="changeArticle">
-        </div>
+        </div>      
 
 
             <div class="articleContent">
@@ -158,7 +149,7 @@ while($resultRow){
 
                                 <?php 
                                 foreach ($gamesData as $game) {?>
-                                <a href="<?php echo "/articles.php?gameId=".$game['id']?>">
+                                <a href="<?php echo "/articles.php?gameId=".$game['id']?>" class="gamesA">
                                 <div class="game">
                                     <img src="<?php echo "img/games/".$game['picture'].".png"?>" alt="">
                                     <p><?php echo $game['title'] ?></p>

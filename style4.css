@@ -56,6 +56,34 @@
     border: none;
     outline: none;
 }
+.comment{
+    margin-top: 1%;
+    padding: 1%;
+    background-color: #151C24;
+    width: max-content;
+    margin-left: 2%;
+}
+.loginComment{
+    font-weight: bold;
+    margin-left: 1%;
+    color: #EC6407;
+}
+.timeComment{
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.298);
+}
+.textComment{
+    margin-top: 1%;
+    padding-bottom: 1%;
+    
+}
+.containerComment{
+    display: flex;
+    align-items: center;
+}
+.container{
+    padding-bottom: 5%;
+}
 
 
 
@@ -93,6 +121,9 @@
     .discussion{
         width: 100%;
     }
+    .navigation{
+       font-size: 10px;
+     }
   
 
 }
